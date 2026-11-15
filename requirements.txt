@@ -3,5 +3,11 @@ sentence-transformers
 chromadb
 groq
 python-dotenv
-streamlit
+streamlit>=1.40
 python-docx
+gtts
+pandas
+numpy
+scipy
+pillow
+rapidocr-onnxruntime
