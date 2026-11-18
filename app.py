@@ -25,10 +25,20 @@ from groq import Groq
 load_dotenv()
 
 # ================= CONFIG =================
-groq_key = os.getenv("GROQ_API_KEY")
+
+def _secret(name, default=""):
+    try:
+        v = st.secrets[name]
+        if v:
+            return str(v)
+    except Exception:
+        pass
+    return os.getenv(name, default)
+
+groq_key = _secret("GROQ_API_KEY")
 groq_client = Groq(api_key=groq_key) if groq_key else None
-GROQ_MODEL = os.getenv("GROQ_MODEL", "")
-TEACHER_PASSWORD = os.getenv("TEACHER_PASSWORD", "")
+GROQ_MODEL = _secret("GROQ_MODEL")
+TEACHER_PASSWORD = _secret("TEACHER_PASSWORD")
 
 RAW = "data/raw"
 USERS_FILE = "data/users.json"
